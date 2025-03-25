@@ -18,26 +18,26 @@ import org.springframework.web.client.RestTemplate;
 public class OauthClient {
 
     @Value("${oauth.token-request-url}")
-    public static String TOKEN_REQUEST_URL;
+    public String TOKEN_REQUEST_URL;
 
     @Value("${oauth.authorization-url}")
 
-    public static String Authorization_URL;
+    public String Authorization_URL;
 
     @Value("${oauth.client-id}")
-    public static String CLIENT_ID;
+    public String CLIENT_ID;
 
     @Value("${oauth.client-secret}")
-    public static String CLIENT_SECRET;
+    public String CLIENT_SECRET;
 
     @Value("${oauth.resource-uri}")
-    public static String RESSOURCE_URI;
+    public String RESSOURCE_URI;
 
     @Value("${oauth.redirect-uri}")
-    public static String REDIRECT_URI;
+    public String REDIRECT_URI;
 
     @Value("${oauth.scopes}")
-    public static String SCOPES;
+    public String SCOPES;
 
     public String createAuthorizationUrl() throws OAuthSystemException {
         OAuthClientRequest request= OAuthClientRequest
@@ -60,6 +60,9 @@ public class OauthClient {
                 .buildBodyMessage();
         OAuthClient oAuthClient=new OAuthClient(new URLConnectionClient());
         OAuthJSONAccessTokenResponse response=oAuthClient.accessToken(request);
+        if (!checkIfOAuthResponseIsValid(response)) {
+            throw OAuthProblemException.error("Invalid OAuth response");
+        }
         return response.getAccessToken();
     }
 
@@ -71,5 +74,8 @@ public class OauthClient {
         HttpEntity<String> entity = new HttpEntity<>(headers);
         ResponseEntity<String> response = restTemplate.exchange(RESSOURCE_URI, HttpMethod.GET, entity, String.class);
         return response.getBody();
+    }
+    private Boolean checkIfOAuthResponseIsValid(OAuthJSONAccessTokenResponse response) {
+        return response.getResponseCode() == 200 && response.getExpiresIn() > 0 && response.getAccessToken() != null;
     }
 }
