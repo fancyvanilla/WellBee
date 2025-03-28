@@ -1,10 +1,9 @@
-package tn.fst.team2.jee.wellbee.oauth.services;
+package tn.fst.team2.jee.oauth.services;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import tn.fst.team2.jee.wellbee.oauth.dao.UserDao;
+import tn.fst.team2.jee.oauth.dto.UserDto;
 
-import java.awt.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,7 @@ public class JwtService {
     @Value("jwt.secret-key")
     private String secret_key;
 
-    public String createJwtToken(UserDao user) {
+    public String createJwtToken(UserDto user) {
         Map<String, Object> claims= new HashMap<>();
         claims.put("name",user.getName());
         claims.put("email", user.getEmail());
@@ -45,13 +44,13 @@ public class JwtService {
         return false;
     }
 
-    public UserDao decodeToken(String token){
+    public UserDto decodeToken(String token){
         try {
             Claims claims= Jwts.parser()
                     .setSigningKey(secret_key)
                     .parseClaimsJws(token)
                     .getBody();
-            return new UserDao(
+            return new UserDto(
                     claims.getSubject(),
                     claims.get("name", String.class),
                     claims.get("email", String.class),

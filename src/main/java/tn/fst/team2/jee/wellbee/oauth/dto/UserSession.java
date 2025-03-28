@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.wellbee.oauth.dao;
+package tn.fst.team2.jee.oauth.dto;
 
 public class UserSession {
     public String accessToken;

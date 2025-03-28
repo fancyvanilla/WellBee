@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.wellbee.oauth.security;
+package tn.fst.team2.jee.oauth.security;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,10 +10,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import tn.fst.team2.jee.wellbee.oauth.dao.UserDao;
-import tn.fst.team2.jee.wellbee.oauth.dao.UserSession;
-import tn.fst.team2.jee.wellbee.oauth.services.JwtService;
-import tn.fst.team2.jee.wellbee.oauth.services.SessionStorageService;
+import tn.fst.team2.jee.oauth.dto.UserDto;
+import tn.fst.team2.jee.oauth.dto.UserSession;
+import tn.fst.team2.jee.oauth.services.JwtService;
+import tn.fst.team2.jee.oauth.services.SessionStorageService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String jwt = authorizationHeader.substring(7);
             if (jwtService.isTokenValid(jwt) && SecurityContextHolder.getContext().getAuthentication() == null){
-                UserDao user = jwtService.decodeToken(jwt);
+                UserDto user = jwtService.decodeToken(jwt);
                 //checks if user session is still valid
                 UserSession userSession= sessionStorageService.getUserSession(user.getSub());
                 if (userSession==null){

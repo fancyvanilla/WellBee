@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.wellbee.oauth.dao;
+package tn.fst.team2.jee.oauth.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -7,15 +7,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDao {
+public class UserDto {
     private String sub;
     private String name;
     private String email;
     private String picture;
 
-    public UserDao() {
+    public UserDto() {
     }
-    public UserDao(String sub, String name, String email, String picture) {
+    public UserDto(String sub, String name, String email, String picture) {
         this.sub = sub;
         this.name = name;
         this.email = email;

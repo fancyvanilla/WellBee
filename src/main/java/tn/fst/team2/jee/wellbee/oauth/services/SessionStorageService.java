@@ -1,9 +1,9 @@
-package tn.fst.team2.jee.wellbee.oauth.services;
+package tn.fst.team2.jee.oauth.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import tn.fst.team2.jee.wellbee.oauth.dao.UserSession;
+import tn.fst.team2.jee.oauth.dto.UserSession;
 
 import java.util.concurrent.TimeUnit;
 
