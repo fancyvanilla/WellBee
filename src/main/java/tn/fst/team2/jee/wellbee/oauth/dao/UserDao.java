@@ -8,9 +8,19 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDao {
+    private String sub;
     private String name;
     private String email;
     private String picture;
+
+    public UserDao() {
+    }
+    public UserDao(String sub, String name, String email, String picture) {
+        this.sub = sub;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+    }
 
     public String getName() {
         return name;
@@ -18,6 +28,14 @@ public class UserDao {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getSub() {
+        return sub;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 
 }

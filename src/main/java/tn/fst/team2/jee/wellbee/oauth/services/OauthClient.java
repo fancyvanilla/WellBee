@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.wellbee.oauth.service;
+package tn.fst.team2.jee.wellbee.oauth.services;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import tn.fst.team2.jee.wellbee.oauth.dao.UserSession;
 
 @Service
 public class OauthClient {
@@ -49,7 +50,7 @@ public class OauthClient {
                 .buildQueryMessage();
         return request.getLocationUri();
     }
-    public String getAccessToken(String code) throws OAuthSystemException, OAuthProblemException {
+    public UserSession getOauthToken(String code) throws OAuthSystemException, OAuthProblemException {
         OAuthClientRequest request= OAuthClientRequest
                 .tokenLocation(TOKEN_REQUEST_URL)
                 .setClientId(CLIENT_ID)
@@ -63,7 +64,10 @@ public class OauthClient {
         if (!checkIfOAuthResponseIsValid(response)) {
             throw OAuthProblemException.error("Invalid OAuth response");
         }
-        return response.getAccessToken();
+        return new UserSession(
+                response.getAccessToken(),
+                response.getExpiresIn()
+                );
     }
 
     public String requestProtectedRessource(String accessToken) {
