@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    @Value("jwt.secret-key")
+    @Value("${jwt.secret-key}")
     private String secret_key;
 
     public String createJwtToken(UserDto user) {

@@ -32,7 +32,7 @@ public class OauthClient {
     public String CLIENT_SECRET;
 
     @Value("${oauth.resource-uri}")
-    public String RESSOURCE_URI;
+    public String RESOURCE_URI;
 
     @Value("${oauth.redirect-uri}")
     public String REDIRECT_URI;
@@ -76,7 +76,7 @@ public class OauthClient {
         headers.set("Authorization", "Bearer " + accessToken);
         headers.set("Content-Type", "application/json");
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(RESSOURCE_URI, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(RESOURCE_URI, HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
     private Boolean checkIfOAuthResponseIsValid(OAuthJSONAccessTokenResponse response) {
