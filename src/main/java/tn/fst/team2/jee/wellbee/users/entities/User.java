@@ -26,7 +26,7 @@ public class User {
     private String imageUrl;
     private String jobTitle;
     private String department;
-    private String points;
+    private Integer points=0;
     @CreatedDate
     private Date createdAt;
     @UpdateTimestamp
