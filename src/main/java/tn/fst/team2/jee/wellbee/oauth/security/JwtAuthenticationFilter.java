@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.oauth.security;
+package tn.fst.team2.jee.wellbee.oauth.security;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,10 +10,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import tn.fst.team2.jee.oauth.dto.UserDto;
-import tn.fst.team2.jee.oauth.dto.UserSession;
-import tn.fst.team2.jee.oauth.services.JwtService;
-import tn.fst.team2.jee.oauth.services.SessionStorageService;
+import tn.fst.team2.jee.wellbee.oauth.dto.UserDto;
+import tn.fst.team2.jee.wellbee.oauth.dto.UserSession;
+import tn.fst.team2.jee.wellbee.oauth.services.JwtService;
+import tn.fst.team2.jee.wellbee.oauth.services.SessionStorageService;
 
 import java.io.IOException;
 import java.util.ArrayList;

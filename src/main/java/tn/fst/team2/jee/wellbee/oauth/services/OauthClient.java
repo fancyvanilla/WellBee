@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.oauth.services;
+package tn.fst.team2.jee.wellbee.oauth.services;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -13,7 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import tn.fst.team2.jee.oauth.dto.UserSession;
+import tn.fst.team2.jee.wellbee.oauth.dto.UserSession;
 
 @Service
 public class OauthClient {

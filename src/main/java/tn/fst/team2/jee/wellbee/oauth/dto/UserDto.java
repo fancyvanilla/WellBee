@@ -1,4 +1,4 @@
-package tn.fst.team2.jee.oauth.dto;
+package tn.fst.team2.jee.wellbee.oauth.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -21,21 +21,4 @@ public class UserDto {
         this.email = email;
         this.picture = picture;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSub() {
-        return sub;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
 }

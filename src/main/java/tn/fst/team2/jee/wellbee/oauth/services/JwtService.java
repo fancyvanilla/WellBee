@@ -1,8 +1,8 @@
-package tn.fst.team2.jee.oauth.services;
+package tn.fst.team2.jee.wellbee.oauth.services;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import tn.fst.team2.jee.oauth.dto.UserDto;
+import tn.fst.team2.jee.wellbee.oauth.dto.UserDto;
 
 import java.util.Date;
 import java.util.HashMap;
